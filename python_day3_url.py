@@ -1,6 +1,7 @@
 import urllib.request
 import os
 
+
 url = 'http://www.berkshirehathaway.com/'
 #url = 'https://www.accenture.com/us-en'
 #url = 'https://investor.apple.com/investor-relations/default.aspx'
