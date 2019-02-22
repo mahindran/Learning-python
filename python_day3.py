@@ -46,20 +46,20 @@
 import urllib.request
 #import urllib.parse
 
-
 url = 'http://www.berkshirehathaway.com/'
+#url = 'https://www.accenture.com/us-en'
 resp = urllib.request.urlopen(url)
 respData = resp.read()
 strng = str(respData)
 print(strng)
 print()
 
-print("HTML Page contains "+str(len(strng))+" characters")
-print()
+# print("HTML Page contains "+str(len(strng))+" characters")
+# print()
 searchh = "href"
-countt = strng.count(searchh)
-print("Number of urls =  "+str(countt))
-print()
+# countt = strng.count(searchh)
+# print("Number of urls =  "+str(countt))
+# print()
 indx = 0
 indx2 = 0
 
@@ -72,6 +72,17 @@ while indx < len(strng):
     indx2 = strng.find(closee,indx)
     #print string from index+6 to indx2-1
     temp1 = indx + 6
-    print(strng[temp1:indx2])
+    file_list = strng[temp1:indx2]
+    if strng[indx2-3:indx2]=="pdf":
+        file_name = url+file_list
+        urllib.request.urlretrieve(file_name, file_list)
+    print(file_list)
     #print("Found at:: ",str(indx)+" and "+str(indx2))
     indx += 4
+
+print()
+print("HTML Page contains "+str(len(strng))+" characters")
+print()
+searchh = "href"
+countt = strng.count(searchh)
+print("Number of urls =  "+str(countt))
