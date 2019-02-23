@@ -1,16 +1,22 @@
 from openpyxl import load_workbook
 
-class user:
+class User:
 
-    def Inrate():
+    def __init__(self):
         pass
 
-    def SGA():
+    def inrate(self):
         pass
 
-class insert:
+    def sga(self):
+        pass
 
-    def newFeedback():
+class Insert:
+
+    def __init__(self):
+        pass
+
+    def newFeedback(self):
         print("**Please insert below information**")
         CompanyID = input("Company ID = ")
         InrateAnalyst = input("Inrate analyst name = ")
@@ -18,15 +24,17 @@ class insert:
         FeedbackType = input("Feedback type = ")
         Indicator = input("Indicator name = ")
         InrateRemark = input("Inrate comment = ")
-        newRow =(CompanyID,InrateAnalyst,SGAAnalyst,FeedbackType,Indicator,InrateRemark,SGARemark)
+        # SGARemark=""
+        # Status=""
+        newRow =(CompanyID,InrateAnalyst,SGAAnalyst,FeedbackType,Indicator,InrateRemark)
         wb = load_workbook(filename='ft_file.xlsx')
         ws = wb['Sheet1']
         ws.append(newRow)
-        print("Saved successfully!")
+        print("Feedback inserted successfully!")
         wb.save("ft_file.xlsx")
 
-    def editFeedback():
-        check.all()
+    def editFeedback(self):
+        self.all()
         print("**Which feedback you want to edit again?**")
         checkID = input("Mention company ID = ")
         wb = load_workbook(filename='ft_file.xlsx')
@@ -44,11 +52,11 @@ class insert:
             if i == "y":
                 r.value = input("Enter new value = ")
 
-        print("Saved successfully!")
+        print("Edited successfully!")
         wb.save("ft_file.xlsx")
 
-    def response():
-        check.all()
+    def response(self):
+        self.all()
         print("**Which feedback you want to respond to?**")
         checkID = input("Mention company ID = ")
         wb = load_workbook(filename='ft_file.xlsx')
@@ -57,7 +65,7 @@ class insert:
         for row in ws.rows:
             if row[0].value == checkID:
                 row_edit = row
-                print(row_edit)
+                #print(row_edit)
                 break
 
         for r in row_edit:
@@ -66,13 +74,16 @@ class insert:
             if i == "y":
                 r.value = input("Enter new value = ")
 
-        print("Saved successfully!")
+        print("Response inserted successfully!")
         wb.save("ft_file.xlsx")
 
 
-class check:
+class Check(Insert):
 
-    def all():
+    def __init__(self):
+        pass
+
+    def all(self):
         wb = load_workbook(filename='ft_file.xlsx', read_only=True)
         ws = wb['Sheet1']
 
@@ -84,18 +95,36 @@ class check:
             # for cell in row:
             #     print(cell.value)
 
+    def welcomeScreen(self):
+        print("----Welcome to SGA Inrate Feedback Tool----")
+        print("[1] Insert feedback (for Inrate analysts)")
+        print("[2] Insert response (for SGA analysts)")
+        print("[3] Edit feedback (for Inrate analysts)")
+        print("[4] Edit response (for SGA analysts)")
+        print("[5] Check FT worksheet")
+        print("[0] Exit")
+        infut = input("Please enter your input number = ")
+        if infut== "1":
+            self.newFeedback()
+        elif infut == "2":
+            self.response()
+        elif infut == "3":
+            self.editFeedback()
+        elif infut == "4":
+            self.editFeedback()
+        elif infut == "5":
+            self.all()
+        elif infut == "0":
+            pass
 
-    def byUser():
+    def byUser(self):
         pass
 
-    def byStatus():
+    def byStatus(self):
         pass
 
 
 if __name__ == "__main__":
 
-
-    #insert.newFeedback()
-    insert.response()
-    check.all()
-    #insert.editFeedback()
+    ft = Check()
+    ft.welcomeScreen()
