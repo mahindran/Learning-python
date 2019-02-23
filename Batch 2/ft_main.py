@@ -1,6 +1,4 @@
-# class main
-# class insert
-# class check
+import openpyxl
 
 class user:
 
