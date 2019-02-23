@@ -26,17 +26,48 @@ class insert:
         wb.save("ft_file.xlsx")
 
     def editFeedback():
-        pass
+        check.all()
+        print("**Which feedback you want to edit again?**")
+        checkID = input("Mention company ID = ")
+        wb = load_workbook(filename='ft_file.xlsx')
+        ws = wb['Sheet1']
 
-class response:
+        for row in ws.rows:
+            if row[0].value == checkID:
+                row_edit = row
+                print(row_edit)
+                break
 
-    def newResponse():
+        for r in row_edit:
+            print(r.value)
+            i = input("Do you want to change this value? (y/n) = ")
+            if i == "y":
+                r.value = input("Enter new value = ")
+
+        print("Saved successfully!")
+        wb.save("ft_file.xlsx")
+
+    def response():
         check.all()
         print("**Which feedback you want to respond to?**")
-        CompanyID = input("Mention company ID = ")
+        checkID = input("Mention company ID = ")
+        wb = load_workbook(filename='ft_file.xlsx')
+        ws = wb['Sheet1']
 
-    def editResponse():
-        pass
+        for row in ws.rows:
+            if row[0].value == checkID:
+                row_edit = row
+                print(row_edit)
+                break
+
+        for r in row_edit:
+            print(r.value)
+            i = input("Do you want to change this value? (y/n) = ")
+            if i == "y":
+                r.value = input("Enter new value = ")
+
+        print("Saved successfully!")
+        wb.save("ft_file.xlsx")
 
 
 class check:
@@ -65,5 +96,6 @@ if __name__ == "__main__":
 
 
     #insert.newFeedback()
-    response.newResponse()
-    #check.all()
+    insert.response()
+    check.all()
+    #insert.editFeedback()
