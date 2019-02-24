@@ -5,10 +5,10 @@ class User:
     def __init__(self):
         pass
 
-    def inrate(self):
+    def exrate(self):
         pass
 
-    def sga(self):
+    def ags(self):
         pass
 
 class Insert:
@@ -19,14 +19,14 @@ class Insert:
     def newFeedback(self):
         print("**Please insert below information**")
         CompanyID = input("Company ID = ")
-        InrateAnalyst = input("Inrate analyst name = ")
-        SGAAnalyst  = input("SGA analyst name  = ")
+        ExrateAnalyst = input("Exrate analyst name = ")
+        AGSAnalyst  = input("AGS analyst name  = ")
         FeedbackType = input("Feedback type = ")
         Indicator = input("Indicator name = ")
-        InrateRemark = input("Inrate comment = ")
-        # SGARemark=""
+        ExrateRemark = input("Exrate comment = ")
+        # AGSRemark=""
         # Status=""
-        newRow =(CompanyID,InrateAnalyst,SGAAnalyst,FeedbackType,Indicator,InrateRemark)
+        newRow =(CompanyID,ExrateAnalyst,AGSAnalyst,FeedbackType,Indicator,ExrateRemark)
         wb = load_workbook(filename='ft_file.xlsx')
         ws = wb['Sheet1']
         ws.append(newRow)
@@ -96,11 +96,11 @@ class Check(Insert):
             #     print(cell.value)
 
     def welcomeScreen(self):
-        print("----Welcome to SGA Inrate Feedback Tool----")
-        print("[1] Insert feedback (for Inrate analysts)")
-        print("[2] Insert response (for SGA analysts)")
-        print("[3] Edit feedback (for Inrate analysts)")
-        print("[4] Edit response (for SGA analysts)")
+        print("----Welcome to AGS Exrate Feedback Tool----")
+        print("[1] Insert feedback (for Exrate analysts)")
+        print("[2] Insert response (for AGS analysts)")
+        print("[3] Edit feedback (for Exrate analysts)")
+        print("[4] Edit response (for AGS analysts)")
         print("[5] Check FT worksheet")
         print("[0] Exit")
         infut = input("Please enter your input number = ")
