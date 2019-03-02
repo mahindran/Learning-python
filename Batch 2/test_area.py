@@ -45,5 +45,15 @@ mycursor = mydb.cursor()
 query = "Select * from feedbacksheet WHERE CompanyID ="+str(checkID)
 mycursor.execute(query)
 result = mycursor.fetchall()
-print(result)
-mydb.close()
+
+cols = ["CompanyID","ExrateAnalyst","AGSAnalyst","FeedbackType","Indicator","ExrateRemark","AGSRemark","Status"]
+i = 0
+for c in result[0][0:8]:
+    print(str(c))
+    i = input("Do you want to change this value? (y/n) = ")
+    if i == "y":
+        newValue = input("Enter new value = ")
+        query = "UPDATE feedbacksheet SET "+cols[i]+"="+newValue+"WHERE CompanyID="+str(checkID)
+        mycursor.execute(query)
+        mydb.commit()
+        mydb.close()
