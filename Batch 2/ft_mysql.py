@@ -46,31 +46,46 @@ class Insert:
 
         print("**Which feedback you want to edit again?**")
         checkID = input("Mention company ID = ")
-
         mydb = mysql.connector.connect(host="localhost", user="root", password="", database="feedbacktool")
         mycursor = mydb.cursor()
         query = "Select * from feedbacksheet WHERE CompanyID =" + str(checkID)
         mycursor.execute(query)
         result = mycursor.fetchall()
-        print(result)
 
+        cols = ["PrimaryKey", "CompanyID", "ExrateAnalyst", "AGSAnalyst", "FeedbackType", "Indicator" \
+            , "ExrateRemark", "AGSRemark", "Status"]
+        a = 0
+        for c in result[0][0:8]:
+            i = input("Do you want to change this value? (y/n) = ")
+            if i == "y":
+                newValue = input("Enter new value = ")
+                query = "UPDATE feedbacksheet SET " + cols[a] + "= '" + newValue + "' WHERE CompanyID = " + str(checkID)
+                mycursor.execute(query)
+                mydb.commit()
+                mydb.close()
+            a = a + 1
+
+        print("Feedback edited successfully!")
 
     def response(self):
         self.all()
-        print("**Which feedback you want to edit again?**")
+
+        print("**Which feedback you want to respond to?**")
         checkID = input("Mention company ID = ")
+        i1 = input("Please insert your response = ")
+        i2 = input("Update status = ")
 
         mydb = mysql.connector.connect(host="localhost", user="root", password="", database="feedbacktool")
         mycursor = mydb.cursor()
-        query = "Select * from feedbacksheet WHERE CompanyID =" + str(checkID)
+
+        query = "UPDATE feedbacksheet SET AGSRemark = '" + i1 + "',Status = '" + i2 + "' WHERE CompanyID = " + str(
+            checkID)
         mycursor.execute(query)
-        result = mycursor.fetchall()
-        print(result)
-        #newText = input("Insert your response = ")
-        #query = "Select * from feedbacksheet WHERE CompanyID =" + str(checkID)
+        print(query)
+        mydb.commit()
+        mydb.close()
 
         print("Response inserted successfully!")
-        wb.save("ft_file.xlsx")
 
 
 class Check(Insert):
