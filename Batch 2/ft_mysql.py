@@ -28,7 +28,8 @@ class Insert:
         # Status=""
         newRow = [CID, ZAnalyst, PAnalyst, Ftype, Indikator, ZRemark]
 
-        mydb = mysql.connector.connect(host="localhost", user="root", password="", database="feedbacktool")
+        mydb = mysql.connector.connect(host="localhost", user="root", \
+                                       password="", database="feedbacktool")
 
         mycursor = mydb.cursor()
 
@@ -46,7 +47,8 @@ class Insert:
 
         print("**Which feedback you want to edit again?**")
         checkID = input("Mention company ID = ")
-        mydb = mysql.connector.connect(host="localhost", user="root", password="", database="feedbacktool")
+        mydb = mysql.connector.connect(host="localhost", user="root", password="", \
+                                       database="feedbacktool")
         mycursor = mydb.cursor()
         query = "Select * from feedbacksheet WHERE CompanyID =" + str(checkID)
         mycursor.execute(query)
@@ -55,15 +57,15 @@ class Insert:
         cols = ["PrimaryKey", "CompanyID", "ExrateAnalyst", "AGSAnalyst", "FeedbackType", "Indicator" \
             , "ExrateRemark", "AGSRemark", "Status"]
         a = 0
-        for c in result[0][0:8]:
-            i = input("Do you want to change this value? (y/n) = ")
+        for c in result[0][0:9]:
+            i = input("Do you want to change value for <"+cols[a]+">? (y/n) = ")
             if i == "y":
                 newValue = input("Enter new value = ")
                 query = "UPDATE feedbacksheet SET " + cols[a] + "= '" + newValue + "' WHERE CompanyID = " + str(checkID)
                 mycursor.execute(query)
                 mydb.commit()
-                mydb.close()
             a = a + 1
+        mydb.close()
 
         print("Feedback edited successfully!")
 
@@ -103,7 +105,7 @@ class Check(Insert):
         result = mycursor.fetchall()
         # print(result)
         for r in result:
-            print(r)
+            print(str(r))
         mydb.close()
 
     def welcomeScreen(self):
