@@ -60,18 +60,19 @@ import mysql.connector
 #         mydb.close()
 #     a=a+1
 
-print("**Which feedback you want to respond to?**")
-checkID = input("Mention company ID = ")
-i1 = input("Please insert your response = ")
-i2 = input("Update status = ")
-
-mydb = mysql.connector.connect(host="localhost", user="root", password="", database="feedbacktool")
-mycursor = mydb.cursor()
-
-query = "UPDATE feedbacksheet SET AGSRemark = '"+i1+"',Status = '"+i2+"' WHERE CompanyID = " + str(checkID)
-mycursor.execute(query)
-print(query)
-mydb.commit()
-mydb.close()
-
-print("Response inserted successfully!")
+#CODE TO INSERT FEEDBACK
+# print("**Which feedback you want to respond to?**")
+# checkID = input("Mention company ID = ")
+# i1 = input("Please insert your response = ")
+# i2 = input("Update status = ")
+#
+# mydb = mysql.connector.connect(host="localhost", user="root", password="", database="feedbacktool")
+# mycursor = mydb.cursor()
+#
+# query = "UPDATE feedbacksheet SET AGSRemark = '"+i1+"',Status = '"+i2+"' WHERE CompanyID = " + str(checkID)
+# mycursor.execute(query)
+# print(query)
+# mydb.commit()
+# mydb.close()
+#
+# print("Response inserted successfully!")
